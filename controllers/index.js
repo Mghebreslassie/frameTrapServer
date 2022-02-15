@@ -22,8 +22,12 @@ const getCharacter = async (req, res) => {
 };
 
 const getAllCharacters = async (req, res) => {
-  const allChars = await CharacterModel.find();
-  res.json({ allChars });
+  try {
+    const allChars = await CharacterModel.find();
+    res.json({ allChars });
+  } catch (error) {
+    res.json({ error: error });
+  }
 };
 
 module.exports = {
